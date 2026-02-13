@@ -26,7 +26,7 @@ import { seedDatabase } from "./controllers/SeedController";
 const app = express();
 
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:19000"],
+    origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:19000", "https://truevalue-adminpanel.onrender.com"],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

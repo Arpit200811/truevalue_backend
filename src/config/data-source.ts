@@ -24,15 +24,24 @@ dotenv.config();
 
 const isProduction = process.env.NODE_ENV === "production";
 
+// ... imports logic is fine, just changing the DataSource config block
+
 export const AppDataSource = new DataSource({
     type: "postgres",
+    url: process.env.DATABASE_URL,
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT || "5432"),
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    synchronize: !isProduction,
+    synchronize: true, // Always true for now to ensure tables are created on new DB
     logging: !isProduction,
+    ssl: true, 
+    extra: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    },
     entities: [
         User, Product, Category, Order, OrderItem, Notification,
         Ticket, TicketReply, Review, Offer, Banner, Rider,
